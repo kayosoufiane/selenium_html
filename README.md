@@ -15,7 +15,7 @@
  (exemple installation: _sudo apt-get install firefox_)
     
 #### Jenkins:
-Install : __Selenium HTML report plugin__ and __EnvInject plugin__
+Install : __GitHub plugin__, __Selenium HTML report plugin__ and __EnvInject plugin__
 
 - Log in to Jenkins, and create a *Maven 2/3* Job named *selenium_html*
 - In the __global__ section (at the top of the configuration page), check __Prepare an environment for the job__, adding **DISPLAY=:20** for __Properties Content__
