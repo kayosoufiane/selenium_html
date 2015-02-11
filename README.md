@@ -9,6 +9,8 @@
  (exemple installation: _sudo apt-get install tomcat7_) (optional : tomcat7-docs tomcat7-admin tomcat7-examples)
   - __Jenkins__
  (exemple installation: _sudo apt-get install jenkins_)
+  - __Git__
+ (exemple installation: _sudo apt-get install git_)
   - __Xvfb__
  (exemple installation: _sudo apt-get install xvfb_)
   - __Firefox__
