@@ -9,9 +9,11 @@
 sudo apt-get install openjdk-7-jdk
 ```
   - __Tomcat 7__
- (optional : tomcat7-docs tomcat7-admin tomcat7-examples)
 ```
 sudo apt-get install tomcat7
+
+sudo vi /etc/tomcat7/tomcat-users.xml
+#<user username="tomcat" password="tomcat" roles="manager-gui,admin-gui"/>
 ```
   - __Jenkins__
 ```
