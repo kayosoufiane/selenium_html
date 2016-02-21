@@ -14,6 +14,8 @@ sudo apt-get install tomcat7
 
 sudo vi /etc/tomcat7/tomcat-users.xml
 #<user username="tomcat" password="tomcat" roles="manager-gui,admin-gui"/>
+
+sudo service tomcat7 restart
 ```
   - __Jenkins__
 ```
