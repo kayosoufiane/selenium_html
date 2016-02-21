@@ -3,19 +3,35 @@
  
 #### Requirements :
   - __Ubuntu Server 14.04__
+ (with openSSL)
   - __JDK 7__
- (exemple installation: _sudo apt-get install openjdk-7-jdk_)
+```
+sudo apt-get install openjdk-7-jdk
+```
   - __Tomcat 7__
- (exemple installation: _sudo apt-get install tomcat7_) (optional : tomcat7-docs tomcat7-admin tomcat7-examples)
+ (optional : tomcat7-docs tomcat7-admin tomcat7-examples)
+```
+sudo apt-get install tomcat7
+```
   - __Jenkins__
- (exemple installation: _sudo apt-get install jenkins_)
+```
+wget -q -O - https://jenkins-ci.org/debian/jenkins-ci.org.key | sudo apt-key add -
+sudo sh -c 'echo deb http://pkg.jenkins-ci.org/debian binary/ > /etc/apt/sources.list.d/jenkins.list'
+sudo apt-get update
+sudo apt-get install jenkins
+```
   - __Git__
- (exemple installation: _sudo apt-get install git_)
+```
+sudo apt-get install git
+```
   - __Xvfb__
- (exemple installation: _sudo apt-get install xvfb_)
+```
+sudo apt-get install xvfb
+```
   - __Firefox__
- (exemple installation: _sudo apt-get install firefox_)
-    
+```
+sudo apt-get install firefox
+```
 #### Jenkins:
 Install : __GitHub plugin__, __Selenium HTML report plugin__ and __EnvInject plugin__
 
