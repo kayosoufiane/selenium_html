@@ -10,7 +10,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <selenium-server.version>2.44.0</selenium-server.version>
+    <selenium-server.version>2.52.0</selenium-server.version>
     <selenium-client.version>1.0.2</selenium-client.version>
   </properties>
   <dependencies>
