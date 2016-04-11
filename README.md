@@ -40,6 +40,7 @@ sudo apt-get install xvfb
   - __Firefox__
 ```
 sudo apt-get install firefox
+# Or a specific version (TODO)
 ```
 #### Jenkins:
 Install : __GitHub plugin__, __Selenium HTML report plugin__ and __EnvInject plugin__
