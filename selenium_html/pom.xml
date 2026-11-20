@@ -1,57 +1,95 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
+
   <groupId>nl.berg.packt.selenium</groupId>
   <artifactId>selenium_html</artifactId>
-  <packaging>jar</packaging>
   <version>1.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
   <name>selenium_html</name>
-  <url>http://maven.apache.org</url>
+  <description>Selenium 4 runner for Selenium IDE HTML (.xhtml) test suites</description>
+
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <selenium-server.version>2.52.0</selenium-server.version>
-    <selenium-client.version>1.0.2</selenium-client.version>
+    <maven.compiler.release>17</maven.compiler.release>
+
+    <selenium.version>4.53.0</selenium.version>
+    <junit.version>6.1.3</junit.version>
+    <logback.version>1.6.8</logback.version>
+
+    <maven-compiler-plugin.version>3.16.0</maven-compiler-plugin.version>
+    <maven-surefire-plugin.version>3.6.1</maven-surefire-plugin.version>
+    <maven-failsafe-plugin.version>3.6.1</maven-failsafe-plugin.version>
+
+    <selenium.startUrl>http://localhost:8080/</selenium.startUrl>
+    <selenium.browser>firefox</selenium.browser>
+    <selenium.headless>true</selenium.headless>
+    <selenium.suite>src/test/resources/selenium/TestSuite.xhtml</selenium.suite>
+    <selenium.timeoutSeconds>10</selenium.timeoutSeconds>
   </properties>
+
   <dependencies>
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>selenium-java</artifactId>
+      <version>${selenium.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <version>${junit.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>${logback.version}</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
+
   <build>
     <plugins>
       <plugin>
-           <groupId>org.codehaus.mojo</groupId>
-           <artifactId>selenium-maven-plugin</artifactId>
-           <version>2.3</version>
-           <executions>
-              <execution>
-                  <id>xvfb</id>
-                  <phase>pre-integration-test</phase>
-                  <goals>
-                    <goal>xvfb</goal>
-                  </goals>
-              </execution>
-              <execution>
-                  <id>start-selenium</id>
-                  <phase>integration-test</phase>
-                  <goals>
-                    <goal>selenese</goal>
-                  </goals>
-                  <configuration>
-                     <suite>src/test/resources/selenium/TestSuite.xhtml</suite>
-                     <browser>*firefox</browser>
-                     <multiWindow>true</multiWindow>
-                     <background>true</background>
-                     <results>./target/results/selenium.html</results>
-                     <startURL>http://localhost:8080/</startURL>
-                  </configuration>
-               </execution>
-            </executions>
-        </plugin>
-     </plugins>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>${maven-compiler-plugin.version}</version>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>${maven-surefire-plugin.version}</version>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-failsafe-plugin</artifactId>
+        <version>${maven-failsafe-plugin.version}</version>
+        <configuration>
+          <systemPropertyVariables>
+            <selenium.startUrl>${selenium.startUrl}</selenium.startUrl>
+            <selenium.browser>${selenium.browser}</selenium.browser>
+            <selenium.headless>${selenium.headless}</selenium.headless>
+            <selenium.suite>${selenium.suite}</selenium.suite>
+            <selenium.timeoutSeconds>${selenium.timeoutSeconds}</selenium.timeoutSeconds>
+          </systemPropertyVariables>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>integration-test</goal>
+              <goal>verify</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
   </build>
 </project>
