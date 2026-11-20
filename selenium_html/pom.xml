@@ -23,12 +23,14 @@
     <maven-compiler-plugin.version>3.16.0</maven-compiler-plugin.version>
     <maven-surefire-plugin.version>3.6.1</maven-surefire-plugin.version>
     <maven-failsafe-plugin.version>3.6.1</maven-failsafe-plugin.version>
+    <exec-maven-plugin.version>3.7.0</exec-maven-plugin.version>
 
     <selenium.startUrl>http://localhost:8080/</selenium.startUrl>
     <selenium.browser>firefox</selenium.browser>
     <selenium.headless>true</selenium.headless>
     <selenium.suite>src/test/resources/selenium/TestSuite.xhtml</selenium.suite>
     <selenium.timeoutSeconds>10</selenium.timeoutSeconds>
+    <selenium.embeddedServer>auto</selenium.embeddedServer>
   </properties>
 
   <dependencies>
@@ -79,6 +81,7 @@
             <selenium.headless>${selenium.headless}</selenium.headless>
             <selenium.suite>${selenium.suite}</selenium.suite>
             <selenium.timeoutSeconds>${selenium.timeoutSeconds}</selenium.timeoutSeconds>
+            <selenium.embeddedServer>${selenium.embeddedServer}</selenium.embeddedServer>
           </systemPropertyVariables>
         </configuration>
         <executions>
@@ -89,6 +92,15 @@
             </goals>
           </execution>
         </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>${exec-maven-plugin.version}</version>
+        <configuration>
+          <mainClass>nl.berg.packt.selenium.LocalTestServer</mainClass>
+        </configuration>
       </plugin>
     </plugins>
   </build>

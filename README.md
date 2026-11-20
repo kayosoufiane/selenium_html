@@ -24,10 +24,12 @@ selenium_html/
 ├── pom.xml
 └── src/
     ├── main/java/nl/berg/packt/selenium/
-    │   └── App.java
+    │   ├── App.java
+    │   └── LocalTestServer.java
     └── test/
         ├── java/nl/berg/packt/selenium/
         │   ├── AppTest.java
+        │   ├── LocalTestServerTest.java
         │   ├── SeleneseRunner.java
         │   ├── SeleneseRunnerTest.java
         │   └── SeleniumHtmlIT.java
@@ -63,24 +65,38 @@ cd selenium_html
 
 ### 2. Run Selenium HTML Integration Tests
 
-Start your target web application (by default `http://localhost:8080/`), then run Maven `verify`:
+By default (`-Dselenium.embeddedServer=auto`), if nothing is already listening on `http://localhost:8080/`, `SeleniumHtmlIT` automatically starts `LocalTestServer` on port `8080` serving an HTML page with `It works !` so the suite runs out of the box:
+
+```bash
+cd selenium_html
+./mvnw verify
+```
+
+On Windows PowerShell:
+
+```powershell
+cd selenium_html
+.\mvnw.cmd verify
+```
+
+To test against an already-running external application (for example Tomcat or Jenkins on `http://localhost:8080/`), start that server or pass `-Dselenium.embeddedServer=false`:
 
 ```bash
 cd selenium_html
 ./mvnw verify \
   -Dselenium.startUrl=http://localhost:8080/ \
   -Dselenium.browser=firefox \
-  -Dselenium.headless=true
+  -Dselenium.headless=true \
+  -Dselenium.embeddedServer=false
 ```
 
-On Windows PowerShell (quote `-D` arguments containing dots):
+### 3. Serve `http://localhost:8080/` Manually in a Browser
+
+To keep the local test page running at `http://localhost:8080/` so you can open it in your browser (or test against it from another terminal):
 
 ```powershell
 cd selenium_html
-.\mvnw.cmd verify `
-  "-Dselenium.startUrl=http://localhost:8080/" `
-  "-Dselenium.browser=firefox" `
-  "-Dselenium.headless=true"
+.\mvnw.cmd compile exec:java
 ```
 
 #### Configurable System Properties
@@ -92,6 +108,7 @@ cd selenium_html
 | `selenium.headless` | `true` | Run browser in headless mode (`true` / `false`) |
 | `selenium.suite` | `src/test/resources/selenium/TestSuite.xhtml` | Path to the Selenium IDE suite file |
 | `selenium.timeoutSeconds` | `10` | Explicit WebDriverWait timeout in seconds |
+| `selenium.embeddedServer` | `auto` | Embedded local server mode (`auto`, `true`, `false`) |
 
 #### Supported Selenese Commands
 
